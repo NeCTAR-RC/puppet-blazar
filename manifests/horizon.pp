@@ -33,7 +33,7 @@ class blazar::horizon(
     command     => 'python setup.py install',
     cwd         => '/root/blazar-dashboard',
     path        => '/usr/bin',
-    require     => vcsrepo['/root/blazar-dashboard'],
+    require     => Vcsrepo['/root/blazar-dashboard'],
     refreshonly => true,
     notify      => Service['httpd'],
   }
