@@ -67,5 +67,7 @@ class blazar::db::mysql(
     allowed_hosts => $allowed_hosts,
   }
 
-  ::Openstacklib::Db::Mysql['blazar'] ~> Exec<| title == 'blazar-db-manage upgrade head' |>
+  Anchor['blazar::db::begin']
+  ~> Class['blazar::db::mysql']
+  ~> Anchor['blazar::db::end']
 }
