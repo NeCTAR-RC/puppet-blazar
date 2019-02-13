@@ -275,6 +275,7 @@ class blazar (
   $rabbit_virtual_host                = $::os_service_default,
 ) {
 
+  include ::blazar::db
   include ::blazar::deps
   include ::blazar::logging
   include ::blazar::params
