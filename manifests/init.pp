@@ -16,12 +16,6 @@
 #   (optional) Print debug messages in the logs
 #   Defaults to False
 #
-# [*my_ip*]
-#   (optional) IP address of this host.
-#   If unset, will determine the IP programmatically. If unable to do so, will use
-#   "127.0.0.1".
-#   Defaults to $::os_service_default.
-#
 # [*auth_strategy*]
 #   (optional) Default protocol to use when connecting to glance
 #   Defaults to 'keystone'. 'https' is the only other valid option for SSL
@@ -226,7 +220,6 @@ class blazar (
   $enabled                            = true,
   $package_ensure                     = 'present',
   $debug                              = undef,
-  $my_ip                              = $::os_service_default,
   $use_syslog                         = undef,
   $use_stderr                         = undef,
   $log_facility                       = undef,
@@ -310,7 +303,6 @@ deprecated. Please use blazar::default_transport_url instead.")
 
   blazar_config {
     'DEFAULT/auth_strategy':           value => $auth_strategy;
-    'DEFAULT/host':                    value => $my_ip;
   }
 
   if $sync_db {
