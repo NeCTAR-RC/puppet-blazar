@@ -15,6 +15,7 @@
 class blazar::api (
   $package_ensure               = 'present',
   $enabled                      = true,
+  $port                         = 8010,
 ) inherits blazar::params {
 
   include ::blazar::deps
@@ -25,6 +26,10 @@ class blazar::api (
     $ensure = 'running'
   } else {
     $ensure = 'stopped'
+  }
+
+  blazar_config {
+    'DEFAULT/port':           value => $port;
   }
 
   service { 'blazar-api':
