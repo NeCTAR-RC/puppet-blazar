@@ -26,6 +26,12 @@ class blazar::manager (
     $ensure = 'stopped'
   }
 
+  package { 'blazar-manager':
+    ensure => $package_ensure,
+    name   => $::blazar::params::manager_package,
+    tag    => ['openstack', 'blazar-package'],
+  }
+
   service { 'blazar-manager':
     ensure    => $ensure,
     name      => $::blazar::params::manager_service,

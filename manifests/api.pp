@@ -32,6 +32,12 @@ class blazar::api (
     'DEFAULT/port':           value => $port;
   }
 
+  package { 'blazar-api':
+    ensure => $package_ensure,
+    name   => $::blazar::params::api_package,
+    tag    => ['openstack', 'blazar-package'],
+  }
+
   service { 'blazar-api':
     ensure     => $ensure,
     name       => $::blazar::params::api_service,

@@ -297,9 +297,9 @@ blazar::rabbit_port, blazar::rabbit_userid and blazar::rabbit_virtual_host are \
 deprecated. Please use blazar::default_transport_url instead.")
   }
 
-  package { 'openstack-blazar':
+  package { 'blazar-common':
     ensure => $package_ensure,
-    name   => $::blazar::params::service_package,
+    name   => 'blazar-common',
     tag    => ['openstack', 'blazar-package'],
   }
 
