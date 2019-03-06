@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cddd3370_69cf56f0",
+        "filename": "manifests/init.pp",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1000104
+      },
+      "writtenOn": "2019-03-06T08:06:10Z",
+      "side": 1,
+      "message": "if blazar-common will be brought in by either blazar-api or blazar-manager on Debian we don\u0027t need this anymore?",
+      "range": {
+        "startLine": 300,
+        "startChar": 13,
+        "endLine": 300,
+        "endChar": 26
+      },
+      "revId": "1655c16e8ba9e78c20f8e589565c1db8a7fb44d3",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7c7e98c_80053a50",
+        "filename": "manifests/params.pp",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000104
+      },
+      "writtenOn": "2019-03-06T08:06:10Z",
+      "side": 1,
+      "message": "I wonder if we can use ensure_package to handle the difference between RedHat and Debian. In Redhat both $::blazar::params::api_package and $::blazar::params::manager_package will have the same name (openstack-blazar), but ensure_package will make sure there isn\u0027t an error if it is already defined?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 43
+      },
+      "revId": "1655c16e8ba9e78c20f8e589565c1db8a7fb44d3",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    }
+  ]
+}
