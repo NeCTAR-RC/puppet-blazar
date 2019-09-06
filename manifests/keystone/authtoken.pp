@@ -1,4 +1,4 @@
-# class: blazar::keystone::auth
+# class: blazar::keystone::authtoken
 #
 # Configure the keystone_authtoken section in the configuration file
 #
@@ -9,11 +9,12 @@
 #   Defaults to 'blazar'
 #
 # [*password*]
-#   (Required) Password to create for the service user
+#   (Optional) Password to create for the service user
+#   Defaults to $::os_service_default
 #
 # [*auth_url*]
 #   (Optional) The URL to use for authentication.
-#   Defaults to 'http://localhost:35357'.
+#   Defaults to 'http://127.0.0.1:5000/'
 #
 # [*project_name*]
 #   (Optional) Service project name
@@ -21,17 +22,17 @@
 #
 # [*user_domain_name*]
 #   (Optional) Name of domain for $username
-#   Defaults to $::os_service_default
+#   Defaults to 'Default'
 #
 # [*project_domain_name*]
 #   (Optional) Name of domain for $project_name
-#   Defaults to $::os_service_default
+#   Defaults to 'Default'
 #
 # [*insecure*]
 #   (Optional) If true, explicitly allow TLS without checking server cert
 #   against any certificate authorities.  WARNING: not recommended.  Use with
 #   caution.
-#   Defaults to $:os_service_default
+#   Defaults to $::os_service_default
 #
 # [*auth_section*]
 #   (Optional) Config Section from which to load plugin specific options
@@ -39,11 +40,11 @@
 #
 # [*auth_type*]
 #   (Optional) Authentication type to load
-#   Defaults to 'password'.
+#   Defaults to 'password'
 #
-# [*auth_uri*]
+# [*www_authenticate_uri*]
 #   (Optional) Complete public Identity API endpoint.
-#   Defaults to 'http://localhost:5000'.
+#   Defaults to 'http://127.0.0.1:5000/'
 #
 # [*auth_version*]
 #   (Optional) API version of the admin Identity API endpoint.
@@ -184,17 +185,23 @@
 #   (in seconds). Set to -1 to disable caching completely. Integer value
 #   Defaults to $::os_service_default.
 #
+# DEPRECATED PARAMETERS
+#
+# [*auth_uri*]
+#   (Optional) Complete public Identity API endpoint.
+#   Defaults to undef
+#
 class blazar::keystone::authtoken(
-  $password,
+  $password                       = $::os_service_default,
   $username                       = 'blazar',
-  $auth_url                       = 'http://localhost:35357',
+  $auth_url                       = 'http://127.0.0.1:5000/',
   $project_name                   = 'services',
-  $user_domain_name               = $::os_service_default,
-  $project_domain_name            = $::os_service_default,
+  $user_domain_name               = 'Default',
+  $project_domain_name            = 'Default',
   $insecure                       = $::os_service_default,
   $auth_section                   = $::os_service_default,
   $auth_type                      = 'password',
-  $auth_uri                       = 'http://localhost:5000',
+  $www_authenticate_uri           = 'http://127.0.0.1:5000/',
   $auth_version                   = $::os_service_default,
   $cache                          = $::os_service_default,
   $cafile                         = $::os_service_default,
@@ -220,16 +227,27 @@ class blazar::keystone::authtoken(
   $region_name                    = $::os_service_default,
   $revocation_cache_time          = $::os_service_default,
   $token_cache_time               = $::os_service_default,
+  # DEPRECATED PARAMETERS
+  $auth_uri                       = undef,
 ) {
 
   include ::blazar::deps
+
+  if is_service_default($password) {
+    fail('Please set password for blazar service user')
+  }
+
+  if $auth_uri {
+    warning('The auth_uri parameter is deprecated. Please use www_authenticate_uri instead.')
+  }
+  $www_authenticate_uri_real = pick($auth_uri, $www_authenticate_uri)
 
   keystone::resource::authtoken { 'blazar_config':
     username                       => $username,
     password                       => $password,
     project_name                   => $project_name,
     auth_url                       => $auth_url,
-    auth_uri                       => $auth_uri,
+    www_authenticate_uri           => $www_authenticate_uri_real,
     auth_version                   => $auth_version,
     auth_type                      => $auth_type,
     auth_section                   => $auth_section,
@@ -262,4 +280,3 @@ class blazar::keystone::authtoken(
     token_cache_time               => $token_cache_time,
   }
 }
-
