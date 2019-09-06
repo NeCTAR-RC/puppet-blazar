@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a346b2c_52cf9b9e",
+        "filename": "manifests/keystone/authtoken.pp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000177
+      },
+      "writtenOn": "2019-09-06T05:06:17Z",
+      "side": 1,
+      "message": "is this really optional if we fail below if it is_service_default()\nnot 100% sure if openstacklib \"return (value \u003d\u003d \u0027\u003cSERVICE DEFAULT\u003e\u0027)\"\nis the same as $::os_service_default ?",
+      "revId": "a09924ac74c1d54166593a7b50aa558af13c20a2",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    }
+  ]
+}
