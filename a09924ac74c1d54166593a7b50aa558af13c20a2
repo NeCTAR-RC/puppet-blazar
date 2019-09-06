@@ -16,6 +16,24 @@
       "revId": "a09924ac74c1d54166593a7b50aa558af13c20a2",
       "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7eee724d_100c4aad",
+        "filename": "manifests/keystone/authtoken.pp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-09-06T05:41:18Z",
+      "side": 1,
+      "message": "good pickup, this was a straight copy/paste from another openstack project",
+      "parentUuid": "0a346b2c_52cf9b9e",
+      "revId": "a09924ac74c1d54166593a7b50aa558af13c20a2",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
     }
   ]
 }
