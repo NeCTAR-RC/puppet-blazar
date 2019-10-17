@@ -258,6 +258,8 @@ class blazar (
   $amqp_password                      = $::os_service_default,
   $sync_db                            = true,
   $purge_config                       = false,
+  $manager_plugins                    = [],
+  $event_max_retries                  = $::os_service_default,
   # DEPRECATED PARAMETERS
   $rabbit_user                        = undef,
   $rabbit_host                        = $::os_service_default,
@@ -303,6 +305,8 @@ deprecated. Please use blazar::default_transport_url instead.")
 
   blazar_config {
     'DEFAULT/auth_strategy':           value => $auth_strategy;
+    'manager/plugins':                 value => join($manager_plugins, ',');
+    'manager/event_max_retries':       value => $event_max_retries;
   }
 
   if $sync_db {
