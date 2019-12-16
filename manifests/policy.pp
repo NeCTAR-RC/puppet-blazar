@@ -21,11 +21,11 @@
 #
 # [*policy_path*]
 #   (optional) Path to the nova policy.json file
-#   Defaults to /etc/blazar/policy.json
+#   Defaults to /etc/blazar/policy.yaml
 #
 class blazar::policy (
   $policies    = {},
-  $policy_path = '/etc/blazar/policy.json',
+  $policy_path = '/etc/blazar/policy.yaml',
 ) {
 
   include ::blazar::deps
