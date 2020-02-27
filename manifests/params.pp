@@ -18,7 +18,7 @@ class blazar::params {
     'Debian': {
       $api_package     = 'blazar-api'
       $manager_package = 'blazar-manager'
-      $nova_package    = 'python-blazarnova'
+      $nova_package    = 'python3-blazarnova'
       $api_service     = 'blazar-api'
       $manager_service = 'blazar-manager'
     }
