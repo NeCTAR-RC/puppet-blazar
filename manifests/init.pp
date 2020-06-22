@@ -159,6 +159,10 @@
 #   (Optional) Password for message broker authentication
 #   Defaults to $::os_service_default.
 #
+# [*nova_client_version*]
+#   (Optional) Nova client version to use
+#   Defaults to $::os_service_default.
+#
 # [*use_syslog*]
 #   (optional) Use syslog for logging
 #   Defaults to undef.
@@ -229,6 +233,7 @@ class blazar (
   $purge_config                       = false,
   $manager_plugins                    = [],
   $event_max_retries                  = $::os_service_default,
+  $nova_client_version                = $::os_service_default,
 ) {
 
   include ::blazar::db
@@ -250,6 +255,7 @@ class blazar (
     'DEFAULT/auth_strategy':           value => $auth_strategy;
     'manager/plugins':                 value => join($manager_plugins, ',');
     'manager/event_max_retries':       value => $event_max_retries;
+    'nova/nova_client_version':        value => $nova_client_version;
   }
 
   if $sync_db {
