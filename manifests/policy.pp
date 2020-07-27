@@ -24,13 +24,11 @@
 #   Defaults to /etc/blazar/policy.yaml
 #
 class blazar::policy (
-  $policies    = {},
-  $policy_path = '/etc/blazar/policy.yaml',
+  Hash   $policies    = {},
+  String $policy_path = '/etc/blazar/policy.yaml',
 ) {
 
   include ::blazar::deps
-
-  validate_hash($policies)
 
   Openstacklib::Policy::Base {
     file_path => $policy_path,
