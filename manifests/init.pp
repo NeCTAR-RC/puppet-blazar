@@ -184,6 +184,20 @@
 #   Enable dbsync
 #   Defaults to true
 #
+# [*notification_transport_url*]
+#   (Optional) A URL representing the messaging driver to use for notifications
+#   and its full configuration. Transport URLs take the form:
+#     transport://user:pass@host1:port[,hostN:portN]/virtual_host
+#   Defaults to $::os_service_default
+#
+# [*notification_driver*]
+#   (Option) Driver or drivers to handle sending notifications.
+#   Defaults to $::os_service_default
+#
+# [*notification_topics*]
+#   (Optional) AMQP topic used for OpenStack notifications
+#   Defaults to $::os_service_default
+#
 # [*purge_config*]
 #   (optional) Whether to set only the specified config options
 #   in the blazar config.
@@ -229,6 +243,9 @@ class blazar (
   $amqp_sasl_config_name              = $::os_service_default,
   $amqp_username                      = $::os_service_default,
   $amqp_password                      = $::os_service_default,
+  $notification_transport_url         = $::os_service_default,
+  $notification_driver                = $::os_service_default,
+  $notification_topics                = $::os_service_default,
   $sync_db                            = true,
   $purge_config                       = false,
   $manager_plugins                    = [],
@@ -260,6 +277,12 @@ class blazar (
 
   if $sync_db {
     include ::blazar::db::sync
+  }
+
+  oslo::messaging::notifications { 'blazar_config':
+    transport_url => $notification_transport_url,
+    driver        => $notification_driver,
+    topics        => $notification_topics,
   }
 
   oslo::messaging::default {'blazar_config':
