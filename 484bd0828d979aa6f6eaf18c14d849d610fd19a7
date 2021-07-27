@@ -18,6 +18,23 @@
       "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23addac9_a60c1b08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000104
+      },
+      "writtenOn": "2021-07-27T23:53:52Z",
+      "side": 1,
+      "message": "Ans to my Q: this is copied from trove",
+      "revId": "484bd0828d979aa6f6eaf18c14d849d610fd19a7",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d119852a_a7ba9ea8",
