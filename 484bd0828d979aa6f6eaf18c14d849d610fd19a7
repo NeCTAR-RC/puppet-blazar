@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d61c2967_a7f08968",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000104
+      },
+      "writtenOn": "2021-07-27T13:10:43Z",
+      "side": 1,
+      "message": "where did you copy this from? I\u0027ve noticed a few new lines that might not be necessary?",
+      "revId": "484bd0828d979aa6f6eaf18c14d849d610fd19a7",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d119852a_a7ba9ea8",
+        "filename": "manifests/keystone/authtoken.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000104
+      },
+      "writtenOn": "2021-07-27T13:10:43Z",
+      "side": 1,
+      "message": "there\u0027s a few lines like this that doesn\u0027t need to change",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 4
+      },
+      "revId": "484bd0828d979aa6f6eaf18c14d849d610fd19a7",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5"
+    }
+  ]
+}
