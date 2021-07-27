@@ -14,7 +14,7 @@
 #
 # [*auth_url*]
 #   (Optional) The URL to use for authentication.
-#   Defaults to 'http://127.0.0.1:5000/'
+#   Defaults to 'http://localhost:5000'
 #
 # [*project_name*]
 #   (Optional) Service project name
@@ -44,7 +44,7 @@
 #
 # [*www_authenticate_uri*]
 #   (Optional) Complete public Identity API endpoint.
-#   Defaults to 'http://127.0.0.1:5000/'
+#   Defaults to 'http://localhost:5000'.
 #
 # [*auth_version*]
 #   (Optional) API version of the admin Identity API endpoint.
@@ -63,12 +63,6 @@
 #   (Optional) Required if identity server requires client certificate
 #   Defaults to $::os_service_default.
 #
-# [*check_revocations_for_cached*]
-#   (Optional) If true, the revocation list will be checked for cached tokens.
-#   This requires that PKI tokens are configured on the identity server.
-#   boolean value.
-#   Defaults to $::os_service_default.
-#
 # [*delay_auth_decision*]
 #   (Optional) Do not handle authorization requests within the middleware, but
 #   delegate the authorization decision to downstream WSGI components. Boolean
@@ -85,17 +79,6 @@
 #   must be present in tokens. String value.
 #   Defaults to $::os_service_default.
 #
-# [*hash_algorithms*]
-#   (Optional) Hash algorithms to use for hashing PKI tokens. This may be a
-#   single algorithm or multiple. The algorithms are those supported by Python
-#   standard hashlib.new(). The hashes will be tried in the order given, so put
-#   the preferred one first for performance. The result of the first hash will
-#   be stored in the cache. This will typically be set to multiple values only
-#   while migrating from a less secure algorithm to a more secure one. Once all
-#   the old tokens are expired this option should be set to a single value for
-#   better performance. List value.
-#   Defaults to $::os_service_default.
-#
 # [*http_connect_timeout*]
 #   (Optional) Request timeout value for communicating with Identity API
 #   server.
@@ -109,7 +92,8 @@
 # [*include_service_catalog*]
 #   (Optional) Indicate whether to set the X-Service-Catalog header. If False,
 #   middleware will not ask for service catalog on token validation and will
-#   not set the X-Service-Catalog header. Boolean value.
+#   not
+#   set the X-Service-Catalog header. Boolean value.
 #   Defaults to $::os_service_default.
 #
 # [*keyfile*]
@@ -133,12 +117,14 @@
 #
 # [*memcache_pool_socket_timeout*]
 #   (Optional) Number of seconds a connection to memcached is held unused in
-#   the pool before it is closed. Integer value
+#   the
+#   pool before it is closed. Integer value
 #   Defaults to $::os_service_default.
 #
 # [*memcache_pool_unused_timeout*]
 #   (Optional) Number of seconds a connection to memcached is held unused in
-#   the pool before it is closed. Integer value
+#   the
+#   pool before it is closed. Integer value
 #   Defaults to $::os_service_default.
 #
 # [*memcache_secret_key*]
@@ -148,8 +134,10 @@
 #
 # [*memcache_security_strategy*]
 #   (Optional) If defined, indicate whether token data should be authenticated
-#   or authenticated and encrypted. If MAC, token data is authenticated (with
-#   HMAC) in the cache. If ENCRYPT, token data is encrypted and authenticated in the
+#   or
+#   authenticated and encrypted. If MAC, token data is authenticated (with
+#   HMAC)
+#   in the cache. If ENCRYPT, token data is encrypted and authenticated in the
 #   cache. If the value is not one of these options or empty, auth_token will
 #   raise an exception on initialization.
 #   Defaults to $::os_service_default.
@@ -194,31 +182,28 @@
 #   true/false
 #   Defaults to $::os_service_default.
 #
-# DEPRECATED PARAMETERS
-#
-# [*auth_uri*]
-#   (Optional) Complete public Identity API endpoint.
-#   Defaults to undef
+# [*interface*]
+#  (Optional) Interface to use for the Identity API endpoint. Valid values are
+#  "public", "internal" or "admin".
+#  Defaults to $::os_service_default.
 #
 class blazar::keystone::authtoken(
-  $password                       = $::os_service_default,
   $username                       = 'blazar',
-  $auth_url                       = 'http://127.0.0.1:5000/',
+  $password                       = $::os_service_default,
+  $auth_url                       = 'http://localhost:5000',
   $project_name                   = 'services',
   $user_domain_name               = 'Default',
   $project_domain_name            = 'Default',
   $insecure                       = $::os_service_default,
   $auth_section                   = $::os_service_default,
   $auth_type                      = 'password',
-  $www_authenticate_uri           = 'http://127.0.0.1:5000/',
+  $www_authenticate_uri           = 'http://localhost:5000',
   $auth_version                   = $::os_service_default,
   $cache                          = $::os_service_default,
   $cafile                         = $::os_service_default,
   $certfile                       = $::os_service_default,
-  $check_revocations_for_cached   = $::os_service_default,
   $delay_auth_decision            = $::os_service_default,
   $enforce_token_bind             = $::os_service_default,
-  $hash_algorithms                = $::os_service_default,
   $http_connect_timeout           = $::os_service_default,
   $http_request_max_retries       = $::os_service_default,
   $include_service_catalog        = $::os_service_default,
@@ -237,27 +222,21 @@ class blazar::keystone::authtoken(
   $token_cache_time               = $::os_service_default,
   $service_token_roles            = $::os_service_default,
   $service_token_roles_required   = $::os_service_default,
-  # DEPRECATED PARAMETERS
-  $auth_uri                       = undef,
+  $interface                      = $::os_service_default,
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   if is_service_default($password) {
     fail('Please set password for blazar service user')
   }
-
-  if $auth_uri {
-    warning('The auth_uri parameter is deprecated. Please use www_authenticate_uri instead.')
-  }
-  $www_authenticate_uri_real = pick($auth_uri, $www_authenticate_uri)
 
   keystone::resource::authtoken { 'blazar_config':
     username                       => $username,
     password                       => $password,
     project_name                   => $project_name,
     auth_url                       => $auth_url,
-    www_authenticate_uri           => $www_authenticate_uri_real,
+    www_authenticate_uri           => $www_authenticate_uri,
     auth_version                   => $auth_version,
     auth_type                      => $auth_type,
     auth_section                   => $auth_section,
@@ -267,10 +246,8 @@ class blazar::keystone::authtoken(
     cache                          => $cache,
     cafile                         => $cafile,
     certfile                       => $certfile,
-    check_revocations_for_cached   => $check_revocations_for_cached,
     delay_auth_decision            => $delay_auth_decision,
     enforce_token_bind             => $enforce_token_bind,
-    hash_algorithms                => $hash_algorithms,
     http_connect_timeout           => $http_connect_timeout,
     http_request_max_retries       => $http_request_max_retries,
     include_service_catalog        => $include_service_catalog,
@@ -289,5 +266,6 @@ class blazar::keystone::authtoken(
     token_cache_time               => $token_cache_time,
     service_token_roles            => $service_token_roles,
     service_token_roles_required   => $service_token_roles_required,
+    interface                      => $interface,
   }
 }
