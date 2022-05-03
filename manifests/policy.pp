@@ -28,10 +28,11 @@ class blazar::policy (
   String $policy_path = '/etc/blazar/policy.yaml',
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   Openstacklib::Policy::Base {
     file_path => $policy_path,
+    file_format => 'yaml',
   }
 
   create_resources('openstacklib::policy::base', $policies)
