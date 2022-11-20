@@ -1,31 +1,6 @@
 {
     "author": "OpenStack Contributors",
-    "dependencies": [
-        {
-            "name": "puppetlabs/inifile",
-            "version_requirement": ">=2.0.0 <3.0.0"
-        },
-        {
-            "name": "puppetlabs/stdlib",
-            "version_requirement": ">=5.0.0 <6.0.0"
-        },
-        {
-            "name": "puppetlabs/vcsrepo",
-            "version_requirement": ">=1.5.0"
-        },
-        {
-            "name": "openstack/keystone",
-            "version_requirement": ">=18.4.0 <20.0.0"
-        },
-        {
-            "name": "openstack/openstacklib",
-            "version_requirement": ">=18.4.0 <20.0.0"
-        },
-        {
-            "name": "openstack/oslo",
-            "version_requirement": ">=18.4.0 <20.0.0"
-        }
-    ],
+    "dependencies": [],
     "description": "Installs and configures OpenStack Blazar.",
     "issues_url": "https://github.com/ChameleonCloud/puppet-blazar",
     "license": "Apache-2.0",
