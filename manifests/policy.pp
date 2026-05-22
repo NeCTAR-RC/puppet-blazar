@@ -23,6 +23,10 @@
 #   (optional) Path to the nova policy.json file
 #   Defaults to /etc/blazar/policy.yaml
 #
+# [*create_resources*]
+#   (optional) use this module to manage the policies
+#    Defaults to true
+#
 class blazar::policy (
   Hash   $policies    = {},
   String $policy_path = '/etc/blazar/policy.yaml',
@@ -35,8 +39,9 @@ class blazar::policy (
     file_format => 'yaml',
   }
 
-  create_resources('openstacklib::policy::base', $policies)
+  if $create_resources {
+    create_resources('openstacklib::policy::base', $policies)
 
-  oslo::policy { 'blazar_config': policy_file => $policy_path }
-
+    oslo::policy { 'blazar_config': policy_file => $policy_path }
+  }
 }
