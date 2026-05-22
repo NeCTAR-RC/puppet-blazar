@@ -7,8 +7,17 @@ Puppet::Type.newtype(:blazar_config) do
     newvalues(/\S+\/\S+/)
   end
 
-  newproperty(:value) do
+  newproperty(:value, :array_matching => :all) do
     desc 'The value of the setting to be defined.'
+    def insync?(is)
+      return true if @should.empty?
+      return false unless is.is_a? Array
+      return false unless is.length == @should.length
+      return (
+        is & @should == is or
+        is & @should.map(&:to_s) == is
+      )
+    end
     munge do |value|
       value = value.to_s.strip
       value.capitalize! if value =~ /^(true|false)$/i
@@ -46,8 +55,8 @@ Puppet::Type.newtype(:blazar_config) do
     defaultto('<SERVICE DEFAULT>')
   end
 
-  autorequire(:package) do
-    'blazar'
+  autorequire(:anchor) do
+    ['blazar::install::end']
   end
 
 end

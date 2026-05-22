@@ -251,7 +251,7 @@ class blazar (
   $manager_plugins                    = [],
   $event_max_retries                  = $facts['os_service_default'],
   $nova_client_version                = $facts['os_service_default'],
-) {
+) inherits blazar::params {
 
   include blazar::db
   include blazar::deps
