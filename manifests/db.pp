@@ -47,7 +47,7 @@ class blazar::db (
   include ::blazar::deps
 
   validate_re($database_connection,
-    '^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')
+    '^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+(:\d+)?\/\S+)?')
 
   oslo::db { 'blazar_config':
     connection              => $database_connection,
