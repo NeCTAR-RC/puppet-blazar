@@ -2,15 +2,15 @@
 #
 class blazar::params {
 
-  include ::blazar::deps
+  include openstacklib::defaults
 
-  include ::openstacklib::defaults
+  $client_package_name = 'python3-blazarclient'
+  $user                = 'blazar'
+  $group               = 'blazar'
 
-  $client_package_name = 'python-blazarclient'
-
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
-      $service_package = 'openstack-blazar'
+      $service_package = 'python3-blazar'
       $nova_package    = 'openstack-blazar-nova'
       $api_service     = 'openstack-blazar-api'
       $manager_service = 'openstack-blazar-manager'
@@ -23,8 +23,7 @@ class blazar::params {
       $manager_service = 'blazar-manager'
     }
     default: {
-      fail("Unsupported osfamily: ${::osfamily} operatingsystem")
+      fail("unsupported osfamily ${facts['os']['family']}, currently Debian and Redhat are the only supported platforms")
     }
-
-  } # Case $::osfamily
+  }
 }

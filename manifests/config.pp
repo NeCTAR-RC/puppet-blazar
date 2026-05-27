@@ -24,7 +24,7 @@ class blazar::config (
   $blazar_config = {},
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   validate_hash($blazar_config)
 

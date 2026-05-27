@@ -115,7 +115,7 @@ describe 'blazar::db' do
       end
 
       it_configures 'blazar::db'
-      it_configures "blazar::db on #{facts[:osfamily]}"
+      it_configures "blazar::db on #{facts[:os][family]}"
     end
   end
 end

@@ -53,11 +53,11 @@ class blazar::db::mysql(
   $allowed_hosts = undef
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   validate_string($password)
 
-  ::openstacklib::db::mysql { 'blazar':
+  openstacklib::db::mysql { 'blazar':
     user          => $user,
     password_hash => mysql_password($password),
     dbname        => $dbname,

@@ -12,7 +12,7 @@ class blazar::db::sync(
   $extra_params  = undef,
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   exec { 'blazar-db-sync':
     command     => "blazar-db-manage --config-file /etc/blazar/blazar.conf upgrade head ${extra_params}",

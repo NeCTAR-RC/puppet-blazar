@@ -3,15 +3,15 @@
 # == Parameters
 #  [*os_auth_protocol*]
 #    the keystone protocol
-#    Optional. Defaults to $::os_service_default.'
+#    Optional. Defaults to $facts['os_service_default'].'
 #
 #  [*os_region_name*]
 #    the keystone region of this node
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_admin_username*]
 #    the keystone user for blazar services
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_admin_password*]
 #    the keystone password for blazar services
@@ -19,47 +19,47 @@
 #
 #  [*os_admin_project_name*]
 #    the keystone tenant name for blazar services
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_admin_project_domain_name*]
 #    the keystone project domain name for blazar services
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_admin_user_domain_name*]
 #    the keystone user domain name foe blazar services
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_auth_version*]
 #    the keystone auth version
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_auth_port*]
 #    Port of keystone server
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_auth_host*]
 #    Host of keystone server
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 #  [*os_auth_prefix*]
 #    Prefix of keystone server
-#    Optional. Defaults to $::os_service_default.
+#    Optional. Defaults to $facts['os_service_default'].
 #
 class blazar::auth (
   $os_admin_password,
-  $os_admin_username            = $::os_service_default,
-  $os_admin_project_name        = $::os_service_default,
-  $os_admin_project_domain_name = $::os_service_default,
-  $os_admin_user_domain_name    = $::os_service_default,
-  $os_auth_protocol             = $::os_service_default,
-  $os_auth_version              = $::os_service_default,
-  $os_auth_port                 = $::os_service_default,
-  $os_auth_host                 = $::os_service_default,
-  $os_auth_prefix               = $::os_service_default,
-  $os_region_name               = $::os_service_default,
+  $os_admin_username            = $facts['os_service_default'],
+  $os_admin_project_name        = $facts['os_service_default'],
+  $os_admin_project_domain_name = $facts['os_service_default'],
+  $os_admin_user_domain_name    = $facts['os_service_default'],
+  $os_auth_protocol             = $facts['os_service_default'],
+  $os_auth_version              = $facts['os_service_default'],
+  $os_auth_port                 = $facts['os_service_default'],
+  $os_auth_host                 = $facts['os_service_default'],
+  $os_auth_prefix               = $facts['os_service_default'],
+  $os_region_name               = $facts['os_service_default'],
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   blazar_config {
     'DEFAULT/os_admin_username'            : value => $os_admin_username;

@@ -17,8 +17,8 @@ class blazar::manager (
   $enabled                             = true,
 ) {
 
-  include ::blazar::deps
-  include ::blazar::params
+  include blazar::deps
+  include blazar::params
 
   if $enabled {
     $ensure = 'running'
@@ -28,13 +28,13 @@ class blazar::manager (
 
   package { 'blazar-manager':
     ensure => $package_ensure,
-    name   => $::blazar::params::manager_package,
+    name   => $blazar::params::manager_package,
     tag    => ['openstack', 'blazar-package'],
   }
 
   service { 'blazar-manager':
     ensure    => $ensure,
-    name      => $::blazar::params::manager_service,
+    name      => $blazar::params::manager_service,
     enable    => $enabled,
     hasstatus => true,
     tag       => 'blazar-service',

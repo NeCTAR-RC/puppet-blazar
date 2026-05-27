@@ -13,12 +13,12 @@ class blazar::nova(
   $package_ensure = present
 ) {
 
-  include ::blazar::deps
-  include ::blazar::params
+  include blazar::deps
+  include blazar::params
 
   package { 'openstack-blazar-nova':
     ensure => $package_ensure,
-    name   => $::blazar::params::nova_package,
+    name   => $blazar::params::nova_package,
     tag    => ['openstack', 'blazar-package'],
   }
 }

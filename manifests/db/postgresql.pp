@@ -40,11 +40,11 @@ class blazar::db::postgresql(
   $privileges = 'ALL',
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   Class['blazar::db::postgresql'] -> Service<| title == 'blazar' |>
 
-  ::openstacklib::db::postgresql { 'blazar':
+  openstacklib::db::postgresql { 'blazar':
     password_hash => postgresql_password($user, $password),
     dbname        => $dbname,
     user          => $user,
@@ -52,6 +52,6 @@ class blazar::db::postgresql(
     privileges    => $privileges,
   }
 
-  ::Openstacklib::Db::Postgresql['blazar'] ~> Exec<| title == 'blazar-db-manage upgrade head' |>
+  Openstacklib::Db::Postgresql['blazar'] ~> Exec<| title == 'blazar-db-manage upgrade head' |>
 
 }
