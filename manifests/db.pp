@@ -58,4 +58,7 @@ class blazar::db (
     max_pool_size           => $database_max_pool_size,
     max_overflow            => $database_max_overflow,
   }
+  # all db settings should be applied and all packages should be installed
+  # before dbsync starts
+  Oslo::Db['blazar_config'] -> Anchor['blazar::dbsync::begin']
 }
