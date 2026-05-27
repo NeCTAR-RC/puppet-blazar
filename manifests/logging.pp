@@ -12,6 +12,14 @@
 #    (Optional) Use syslog for logging.
 #    Defaults to $facts['os_service_default']
 #
+#  [*use_json*]
+#    (Optional) Use json for logging.
+#    Defaults to $facts['os_service_default']
+#
+#  [*use_journal*]
+#    (Optional) Use journal for logging.
+#    Defaults to $facts['os_service_default']
+#
 #  [*use_stderr*]
 #    (optional) Use stderr for logging
 #    Defaults to $facts['os_service_default']
@@ -92,9 +100,12 @@
 #    (optional) Format string for %%(asctime)s in log records.
 #    Defaults to $facts['os_service_default']
 #    Example: 'Y-%m-%d %H:%M:%S'
+#
 
 class blazar::logging(
   $use_syslog                    = $facts['os_service_default'],
+  $use_json                      = $facts['os_service_default'],
+  $use_journal                   = $facts['os_service_default'],
   $use_stderr                    = $facts['os_service_default'],
   $syslog_log_facility           = $facts['os_service_default'],
   $log_dir                       = '/var/log/blazar',
@@ -118,6 +129,8 @@ class blazar::logging(
   oslo::log { 'blazar_config':
     use_stderr                    => $use_stderr,
     use_syslog                    => $use_syslog,
+    use_json                      => $use_json,
+    use_journal                   => $use_journal,
     log_dir                       => $log_dir,
     log_file                      => $log_file,
     debug                         => $debug,
