@@ -10,6 +10,8 @@ class blazar::params {
 
   case $facts['os']['family'] {
     'RedHat': {
+      $api_package     = 'openstack-blazar-api'
+      $manager_package = 'openstack-blazar-manager'
       $service_package = 'python3-blazar'
       $nova_package    = 'openstack-blazar-nova'
       $api_service     = 'openstack-blazar-api'
@@ -18,6 +20,7 @@ class blazar::params {
     'Debian': {
       $api_package     = 'blazar-api'
       $manager_package = 'blazar-manager'
+      $service_package = 'python3-blazar'
       $nova_package    = 'python3-blazarnova'
       $api_service     = 'blazar-api'
       $manager_service = 'blazar-manager'

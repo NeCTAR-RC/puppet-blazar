@@ -260,7 +260,7 @@ class blazar (
 
   package { 'blazar-common':
     ensure => $package_ensure,
-    name   => 'blazar-common',
+    name   => $blazar::params::service_package,
     tag    => ['openstack', 'blazar-package'],
   }
 
