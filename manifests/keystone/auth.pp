@@ -73,7 +73,7 @@ class blazar::keystone::auth (
   $internal_url        = 'http://127.0.0.1:1234',
 ) {
 
-  include ::blazar::deps
+  include blazar::deps
 
   if $configure_user_role {
     Keystone_user_role["${auth_name}@${tenant}"] ~> Service <| name == 'blazar-server' |>

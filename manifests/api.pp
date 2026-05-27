@@ -18,9 +18,9 @@ class blazar::api (
   $port                         = 8010,
 ) inherits blazar::params {
 
-  include ::blazar::deps
-  include ::blazar::params
-  include ::blazar::policy
+  include blazar::deps
+  include blazar::params
+  include blazar::policy
 
   if $enabled {
     $ensure = 'running'
@@ -34,13 +34,13 @@ class blazar::api (
 
   package { 'blazar-api':
     ensure => $package_ensure,
-    name   => $::blazar::params::api_package,
+    name   => $blazar::params::api_package,
     tag    => ['openstack', 'blazar-package'],
   }
 
   service { 'blazar-api':
     ensure     => $ensure,
-    name       => $::blazar::params::api_service,
+    name       => $blazar::params::api_service,
     enable     => $enabled,
     hasstatus  => true,
     hasrestart => true,

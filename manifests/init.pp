@@ -22,29 +22,29 @@
 #
 # [*rpc_response_timeout*]
 #   (optional) Seconds to wait for a response from a call. (integer value)
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*control_exchange*]
 #   (optional) What RPC queue/exchange to use (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*default_transport_url*]
 #    (optional) A URL representing the messaging driver to use and its full
 #    configuration. Transport URLs take the form:
 #      transport://user:pass@host1:port[,hostN:portN]/virtual_host
-#    Defaults to $::os_service_default
+#    Defaults to $facts['os_service_default']
 #
 # [*rpc_backend*]
 #   (optional) what rpc/queuing service to use (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*rabbit_use_ssl*]
 #   (optional) Connect over SSL for RabbitMQ. (boolean value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*rabbit_ha_queues*]
 #   (optional) Use HA queues in RabbitMQ. (boolean value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*rabbit_heartbeat_timeout_threshold*]
 #   (optional) Number of seconds after which the RabbitMQ broker is considered
@@ -52,116 +52,116 @@
 #   Heartbeating helps to ensure the TCP connection to RabbitMQ isn't silently
 #   closed, resulting in missed or lost messages from the queue.
 #   Requires kombu >= 3.0.7 and amqp >= 1.4.0. (integer value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*rabbit_heartbeat_rate*]
 #   (optional) How often during the rabbit_heartbeat_timeout_threshold period
 #   to check the heartbeat on RabbitMQ connection.
 #   i.e. rabbit_heartbeat_rate=2 when rabbit_heartbeat_timeout_threshold=60,
 #   the heartbeat will be checked every 30 seconds. (integer value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*kombu_ssl_ca_certs*]
 #   (optional) SSL certification authority file (valid only if SSL enabled).
 #   (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*kombu_ssl_certfile*]
 #   (optional) SSL cert file (valid only if SSL enabled). (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*kombu_ssl_keyfile*]
 #   (optional) SSL key file (valid only if SSL enabled). (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*kombu_ssl_version*]
 #   (optional) SSL version to use (valid only if SSL enabled).
 #   Valid values are TLSv1, SSLv23 and SSLv3. SSLv2 may be
 #   available on some distributions. (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*kombu_reconnect_delay*]
 #   (optional) How long to wait before reconnecting in response to an AMQP
 #   consumer cancel notification. (floating point value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*kombu_compression*]
 #   (optional) Possible values are: gzip, bz2. If not set compression will not
 #   be used. This option may notbe available in future versions. EXPERIMENTAL.
 #   (string value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*amqp_durable_queues*]
 #   (optional) Define queues as "durable" to rabbitmq. (boolean value)
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*amqp_server_request_prefix*]
 #   (Optional) Address prefix used when sending to a specific server
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_broadcast_prefix*]
 #   (Optional) address prefix used when broadcasting to all servers
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_group_request_prefix*]
 #   (Optional) address prefix when sending to any server in group
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_container_name*]
 #   (Optional) Name for the AMQP container
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_idle_timeout*]
 #   (Optional) Timeout for inactive connections
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_trace*]
 #   (Optional) Debug: dump AMQP frames to stdout
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_ssl_ca_file*]
 #   (Optional) CA certificate PEM file to verify server certificate
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_ssl_cert_file*]
 #   (Optional) Identifying certificate PEM file to present to clients
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_ssl_key_file*]
 #   (Optional) Private key PEM file used to sign cert_file certificate
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_ssl_key_password*]
 #   (Optional) Password for decrypting ssl_key_file (if encrypted)
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_allow_insecure_clients*]
 #   (Optional) Accept clients using either SSL or plain TCP
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_sasl_mechanisms*]
 #   (Optional) Space separated list of acceptable SASL mechanisms
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_sasl_config_dir*]
 #   (Optional) Path to directory that contains the SASL configuration
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_sasl_config_name*]
 #   (Optional) Name of configuration file (without .conf suffix)
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_username*]
 #   (Optional) User name for message broker authentication
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*amqp_password*]
 #   (Optional) Password for message broker authentication
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*nova_client_version*]
 #   (Optional) Nova client version to use
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*use_syslog*]
 #   (optional) Use syslog for logging
@@ -177,7 +177,7 @@
 #
 # [*log_dir*]
 #   (optional) Directory where logs should be stored.
-#   If set to $::os_service_default, it will not log to any directory.
+#   If set to $facts['os_service_default'], it will not log to any directory.
 #   Defaults to undef.
 #
 # [*sync_db*]
@@ -188,15 +188,15 @@
 #   (Optional) A URL representing the messaging driver to use for notifications
 #   and its full configuration. Transport URLs take the form:
 #     transport://user:pass@host1:port[,hostN:portN]/virtual_host
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*notification_driver*]
 #   (Option) Driver or drivers to handle sending notifications.
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*notification_topics*]
 #   (Optional) AMQP topic used for OpenStack notifications
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*purge_config*]
 #   (optional) Whether to set only the specified config options
@@ -212,51 +212,51 @@ class blazar (
   $log_facility                       = undef,
   $log_dir                            = undef,
   $auth_strategy                      = 'keystone',
-  $control_exchange                   = $::os_service_default,
-  $rpc_response_timeout               = $::os_service_default,
-  $default_transport_url              = $::os_service_default,
-  $rpc_backend                        = $::os_service_default,
-  $rabbit_use_ssl                     = $::os_service_default,
-  $rabbit_heartbeat_timeout_threshold = $::os_service_default,
-  $rabbit_heartbeat_rate              = $::os_service_default,
-  $rabbit_ha_queues                   = $::os_service_default,
-  $kombu_ssl_ca_certs                 = $::os_service_default,
-  $kombu_ssl_certfile                 = $::os_service_default,
-  $kombu_ssl_keyfile                  = $::os_service_default,
-  $kombu_ssl_version                  = $::os_service_default,
-  $kombu_reconnect_delay              = $::os_service_default,
-  $kombu_compression                  = $::os_service_default,
-  $amqp_durable_queues                = $::os_service_default,
-  $amqp_server_request_prefix         = $::os_service_default,
-  $amqp_broadcast_prefix              = $::os_service_default,
-  $amqp_group_request_prefix          = $::os_service_default,
-  $amqp_container_name                = $::os_service_default,
-  $amqp_idle_timeout                  = $::os_service_default,
-  $amqp_trace                         = $::os_service_default,
-  $amqp_ssl_ca_file                   = $::os_service_default,
-  $amqp_ssl_cert_file                 = $::os_service_default,
-  $amqp_ssl_key_file                  = $::os_service_default,
-  $amqp_ssl_key_password              = $::os_service_default,
-  $amqp_allow_insecure_clients        = $::os_service_default,
-  $amqp_sasl_mechanisms               = $::os_service_default,
-  $amqp_sasl_config_dir               = $::os_service_default,
-  $amqp_sasl_config_name              = $::os_service_default,
-  $amqp_username                      = $::os_service_default,
-  $amqp_password                      = $::os_service_default,
-  $notification_transport_url         = $::os_service_default,
-  $notification_driver                = $::os_service_default,
-  $notification_topics                = $::os_service_default,
+  $control_exchange                   = $facts['os_service_default'],
+  $rpc_response_timeout               = $facts['os_service_default'],
+  $default_transport_url              = $facts['os_service_default'],
+  $rpc_backend                        = $facts['os_service_default'],
+  $rabbit_use_ssl                     = $facts['os_service_default'],
+  $rabbit_heartbeat_timeout_threshold = $facts['os_service_default'],
+  $rabbit_heartbeat_rate              = $facts['os_service_default'],
+  $rabbit_ha_queues                   = $facts['os_service_default'],
+  $kombu_ssl_ca_certs                 = $facts['os_service_default'],
+  $kombu_ssl_certfile                 = $facts['os_service_default'],
+  $kombu_ssl_keyfile                  = $facts['os_service_default'],
+  $kombu_ssl_version                  = $facts['os_service_default'],
+  $kombu_reconnect_delay              = $facts['os_service_default'],
+  $kombu_compression                  = $facts['os_service_default'],
+  $amqp_durable_queues                = $facts['os_service_default'],
+  $amqp_server_request_prefix         = $facts['os_service_default'],
+  $amqp_broadcast_prefix              = $facts['os_service_default'],
+  $amqp_group_request_prefix          = $facts['os_service_default'],
+  $amqp_container_name                = $facts['os_service_default'],
+  $amqp_idle_timeout                  = $facts['os_service_default'],
+  $amqp_trace                         = $facts['os_service_default'],
+  $amqp_ssl_ca_file                   = $facts['os_service_default'],
+  $amqp_ssl_cert_file                 = $facts['os_service_default'],
+  $amqp_ssl_key_file                  = $facts['os_service_default'],
+  $amqp_ssl_key_password              = $facts['os_service_default'],
+  $amqp_allow_insecure_clients        = $facts['os_service_default'],
+  $amqp_sasl_mechanisms               = $facts['os_service_default'],
+  $amqp_sasl_config_dir               = $facts['os_service_default'],
+  $amqp_sasl_config_name              = $facts['os_service_default'],
+  $amqp_username                      = $facts['os_service_default'],
+  $amqp_password                      = $facts['os_service_default'],
+  $notification_transport_url         = $facts['os_service_default'],
+  $notification_driver                = $facts['os_service_default'],
+  $notification_topics                = $facts['os_service_default'],
   $sync_db                            = true,
   $purge_config                       = false,
   $manager_plugins                    = [],
-  $event_max_retries                  = $::os_service_default,
-  $nova_client_version                = $::os_service_default,
+  $event_max_retries                  = $facts['os_service_default'],
+  $nova_client_version                = $facts['os_service_default'],
 ) {
 
-  include ::blazar::db
-  include ::blazar::deps
-  include ::blazar::logging
-  include ::blazar::params
+  include blazar::db
+  include blazar::deps
+  include blazar::logging
+  include blazar::params
 
   package { 'blazar-common':
     ensure => $package_ensure,
@@ -276,7 +276,7 @@ class blazar (
   }
 
   if $sync_db {
-    include ::blazar::db::sync
+    include blazar::db::sync
   }
 
   oslo::messaging::notifications { 'blazar_config':
@@ -291,7 +291,7 @@ class blazar (
       control_exchange     => $control_exchange,
   }
 
-  if $rpc_backend in [$::os_service_default, 'blazar.openstack.common.rpc.impl_kombu', 'rabbit'] {
+  if $rpc_backend in [$facts['os_service_default'], 'blazar.openstack.common.rpc.impl_kombu', 'rabbit'] {
     oslo::messaging::rabbit {'blazar_config':
       rabbit_use_ssl              => $rabbit_use_ssl,
       heartbeat_timeout_threshold => $rabbit_heartbeat_timeout_threshold,

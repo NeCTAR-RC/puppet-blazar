@@ -18,8 +18,8 @@ class blazar::horizon(
   $git_remote_branch = 'master',
 ) {
 
-  include ::blazar::deps
-  include ::blazar::params
+  include blazar::deps
+  include blazar::params
 
   vcsrepo { '/root/blazar-dashboard':
     ensure   => latest,

@@ -13,12 +13,12 @@ class blazar::client(
   $package_ensure = present
 ) {
 
-  include ::blazar::deps
-  include ::blazar::params
+  include blazar::deps
+  include blazar::params
 
   package { 'python-blazarclient':
     ensure => $package_ensure,
-    name   => $::blazar::params::client_package,
+    name   => $blazar::params::client_package,
     tag    => ['openstack', 'blazar-support-package'],
   }
 }
